@@ -2,7 +2,7 @@
 
 namespace OpenSBS.Engine.Models.Modules;
 
-public class ModulesCollection : IEnumerable<IModule>
+public class ModuleCollection : IEnumerable<IModule>
 {
     private readonly ICollection<IModule> _modules = new List<IModule>();
     private readonly IDictionary<string, IModule> _modulesIndex = new Dictionary<string, IModule>();

@@ -7,7 +7,7 @@ namespace OpenSBS.Engine.Models;
 
 public abstract class SpaceEntity : Entity
 {
-    public ModulesCollection Modules { get; } = [];
+    public ModuleCollection Modules { get; } = [];
     public PluginCollection Plugins { get; } = [];
     public BodyPlugin Body => Plugins.FirstOrDefault<BodyPlugin>(BodyPlugin.Key) ?? throw new Exception("Space entity does NOT have a body plugin");
 
