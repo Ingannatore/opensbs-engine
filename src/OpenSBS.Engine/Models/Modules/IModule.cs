@@ -1,4 +1,6 @@
-﻿namespace OpenSBS.Engine.Models.Modules;
+﻿using OpenSBS.Engine.Models.Actions;
+
+namespace OpenSBS.Engine.Models.Modules;
 
 public interface IModule
 {
