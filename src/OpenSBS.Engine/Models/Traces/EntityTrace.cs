@@ -38,6 +38,6 @@ public class EntityTrace(string id, string initialCallSign, string[,] signature)
             Shield.Update(shieldModule);
         }
 
-        Type = target.Type;
+        Type = target.Category;
     }
 }

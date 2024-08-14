@@ -1,6 +1,6 @@
 ﻿namespace OpenSBS.Engine.Models;
 
-public static class EntityType
+public static class EntityCategory
 {
     public const string Fighter = "entity-space-ship-fighter";
     public const string Frigate = "entity-space-ship-frigate";
