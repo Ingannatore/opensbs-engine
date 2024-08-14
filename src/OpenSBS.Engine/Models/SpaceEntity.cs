@@ -11,7 +11,7 @@ public abstract class SpaceEntity : Entity
     public PluginCollection Plugins { get; } = [];
     public BodyPlugin Body => Plugins.FirstOrDefault<BodyPlugin>(BodyPlugin.Key) ?? throw new Exception("Space entity does NOT have a body plugin");
 
-    public SpaceEntity(string id, string name, EntityTemplate template) : base(id, template.Type, name)
+    public SpaceEntity(string id, string name, EntityTemplate template) : base(id, template.Type, template.Size, name)
     {
         Plugins.Add(BodyPlugin.Key, new BodyPlugin());
     }
