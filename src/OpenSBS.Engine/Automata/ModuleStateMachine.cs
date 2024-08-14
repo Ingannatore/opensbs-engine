@@ -1,4 +1,4 @@
-﻿using OpenSBS.Engine.Models.Entities;
+﻿using OpenSBS.Engine.Models;
 using OpenSBS.Engine.Models.Modules;
 
 namespace OpenSBS.Engine.Automata;
@@ -19,7 +19,7 @@ public class ModuleStateMachine<TM, TS> where TM : IModule where TS : ModuleStat
         State.OnEnter(module);
     }
 
-    public void Update(TimeSpan deltaT, TM module, Entity owner, World world)
+    public void Update(TimeSpan deltaT, TM module, SpaceEntity owner, World world)
     {
         var nextState = State.Update(deltaT, module, owner, world);
         if (nextState != null)

@@ -1,4 +1,4 @@
-﻿using OpenSBS.Engine.Models.Entities;
+﻿using OpenSBS.Engine.Models;
 using OpenSBS.Engine.Models.Items;
 
 namespace OpenSBS.Engine.Modules.Weapons.Automata;
@@ -19,7 +19,7 @@ public class ReloadState : WeaponState
         module.Timer.Reset(module.Template.ReloadTime);
     }
 
-    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, Entity owner, World world)
+    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, SpaceEntity owner, World world)
     {
         module.Timer.Advance(deltaT.TotalSeconds);
         if (!module.Timer.IsCompleted)
@@ -30,7 +30,7 @@ public class ReloadState : WeaponState
         var remainingAmmo = module.Reload(_ammo);
         if (remainingAmmo != null)
         {
-            owner.Cargo.Add(remainingAmmo);
+            //owner.Cargo.Add(remainingAmmo);
         }
 
         return FireState.Create();

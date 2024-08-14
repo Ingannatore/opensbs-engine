@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using OpenSBS.Engine.Models.Entities;
 
 namespace OpenSBS.Engine.Models.Traces;
 
@@ -29,7 +28,7 @@ public class EntityTraceCollection : IEnumerable<EntityTrace>
         }
     }
 
-    public void Update(Entity owner, Entity target, int range)
+    public void Update(SpaceEntity owner, SpaceEntity target, int range)
     {
         if (!_traces.ContainsKey(target.Id))
         {

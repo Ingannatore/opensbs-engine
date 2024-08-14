@@ -1,4 +1,4 @@
-﻿using OpenSBS.Engine.Models.Entities;
+﻿using OpenSBS.Engine.Models;
 
 namespace OpenSBS.Engine.Modules.Weapons.Automata;
 
@@ -10,5 +10,5 @@ public class OutOfAmmoState : WeaponState
     {
     }
 
-    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, Entity owner, World world) => null;
+    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, SpaceEntity owner, World world) => null;
 }

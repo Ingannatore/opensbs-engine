@@ -1,5 +1,4 @@
 ﻿using OpenSBS.Engine.Models;
-using OpenSBS.Engine.Models.Entities;
 using OpenSBS.Engine.Models.Modules;
 using OpenSBS.Engine.Models.Templates;
 
@@ -20,7 +19,7 @@ public class EngineModule : Module<EngineModuleTemplate>
     {
     }
 
-    public override void HandleAction(ClientAction action, Entity owner)
+    public override void HandleAction(ClientAction action, SpaceEntity owner)
     {
         switch (action.Type)
         {
@@ -34,10 +33,12 @@ public class EngineModule : Module<EngineModuleTemplate>
         }
     }
 
-    public override void Update(TimeSpan deltaT, Entity owner, World world)
+    public override void Update(TimeSpan deltaT, SpaceEntity owner, World world)
     {
-        owner.UpdateSpeeds(
-            CalculateLinearSpeed(deltaT, owner.LinearSpeed),
+        var ownerBody = owner.Body;
+
+        ownerBody.Update(
+            CalculateLinearSpeed(deltaT, ownerBody.LinearSpeed),
             CalculateAngularSpeed(deltaT)
         );
     }

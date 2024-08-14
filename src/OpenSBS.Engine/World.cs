@@ -1,44 +1,22 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using OpenSBS.Engine.Models.Entities;
+﻿using System.Collections;
+using OpenSBS.Engine.Models;
 
 namespace OpenSBS.Engine
 {
-    public class World : IEnumerable<Entity>
+    public class World : IEnumerable<SpaceEntity>
     {
-        private readonly IDictionary<string, Entity> _entities;
+        private readonly IDictionary<string, SpaceEntity> _entities = new Dictionary<string, SpaceEntity>();
 
-        public World()
-        {
-            _entities = new Dictionary<string, Entity>();
-        }
-
-        public bool ExistsEntity(string id)
-        {
-            return _entities.ContainsKey(id);
-        }
-
-        public void AddEntity(Entity entity)
-        {
-            _entities[entity.Id] = entity;
-        }
-
-        public Entity GetEntity(string id)
-        {
-            return _entities[id];
-        }
-
-        public void DamageEntity(string id, int amount)
-        {
-            _entities[id].ApplyDamage(amount);
-        }
+        public bool ExistsEntity(string id) => _entities.ContainsKey(id);
+        public SpaceEntity GetEntity(string id) => _entities[id];
+        public void AddEntity(SpaceEntity entity) => _entities[entity.Id] = entity;
+        public void DamageEntity(string id, int amount) => _entities[id].ApplyDamage(amount);
 
         public void Update(TimeSpan deltaT)
         {
             foreach (var entity in _entities.Values)
             {
-                if (entity.Hull.IsDestroyed)
+                if (entity.IsDestroyed)
                 {
                     _entities.Remove(entity.Id);
                     continue;
@@ -48,14 +26,7 @@ namespace OpenSBS.Engine
             }
         }
 
-        public IEnumerator<Entity> GetEnumerator()
-        {
-            return _entities.Values.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        public IEnumerator<SpaceEntity> GetEnumerator() => _entities.Values.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

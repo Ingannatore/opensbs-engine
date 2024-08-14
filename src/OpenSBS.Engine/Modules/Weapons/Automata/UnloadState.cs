@@ -1,4 +1,4 @@
-﻿using OpenSBS.Engine.Models.Entities;
+﻿using OpenSBS.Engine.Models;
 using OpenSBS.Engine.Models.Items;
 
 namespace OpenSBS.Engine.Modules.Weapons.Automata
@@ -20,7 +20,7 @@ namespace OpenSBS.Engine.Modules.Weapons.Automata
             module.Timer.Reset(module.Template.ReloadTime);
         }
 
-        public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, Entity owner, World world)
+        public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, SpaceEntity owner, World world)
         {
             module.Timer.Advance(deltaT.TotalSeconds);
             if (!module.Timer.IsCompleted)
@@ -28,7 +28,7 @@ namespace OpenSBS.Engine.Modules.Weapons.Automata
                 return null;
             }
 
-            owner.Cargo.Add(_ammoToReturn);
+            //owner.Cargo.Add(_ammoToReturn);
             return IdleState.Create();
         }
     }

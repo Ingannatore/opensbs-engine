@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using OpenSBS.Engine.Models.Entities;
 
 namespace OpenSBS.Engine.Models.Modules;
 
@@ -25,7 +24,7 @@ public class ModulesCollection : IEnumerable<IModule>
         _modulesIndex.Remove(module.Id);
     }
 
-    public void Update(TimeSpan deltaT, Entity owner, World world)
+    public void Update(TimeSpan deltaT, SpaceEntity owner, World world)
     {
         foreach (var module in _modules)
         {

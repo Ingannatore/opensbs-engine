@@ -1,4 +1,4 @@
-﻿using OpenSBS.Engine.Models.Entities;
+﻿using OpenSBS.Engine.Models;
 
 namespace OpenSBS.Engine.Modules.Weapons.Automata;
 
@@ -16,6 +16,6 @@ public class IdleState : WeaponState
         module.Timer.Reset(0);
     }
 
-    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, Entity owner, World world) =>
+    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, SpaceEntity owner, World world) =>
         WeaponHasTarget(module, world) ? FireState.Create() : null;
 }

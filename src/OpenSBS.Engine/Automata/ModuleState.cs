@@ -1,4 +1,4 @@
-﻿using OpenSBS.Engine.Models.Entities;
+﻿using OpenSBS.Engine.Models;
 
 namespace OpenSBS.Engine.Automata;
 
@@ -8,5 +8,5 @@ public abstract class ModuleState<TM, TS>
     {
     }
 
-    public abstract TS? Update(TimeSpan deltaT, TM module, Entity owner, World world);
+    public abstract TS? Update(TimeSpan deltaT, TM module, SpaceEntity owner, World world);
 }

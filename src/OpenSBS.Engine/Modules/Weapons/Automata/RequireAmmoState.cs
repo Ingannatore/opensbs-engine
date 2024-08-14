@@ -1,4 +1,4 @@
-﻿using OpenSBS.Engine.Models.Entities;
+﻿using OpenSBS.Engine.Models;
 
 namespace OpenSBS.Engine.Modules.Weapons.Automata;
 
@@ -19,13 +19,13 @@ public class RequireAmmoState : WeaponState
         _missingAmmoQuantity = module.GetMissingAmmoQuantity(_itemId);
     }
 
-    public override WeaponState Update(TimeSpan deltaT, WeaponModule module, Entity owner, World world)
+    public override WeaponState Update(TimeSpan deltaT, WeaponModule module, SpaceEntity owner, World world)
     {
-        var ammoStack = owner.Cargo.Extract(_itemId, _missingAmmoQuantity);
-        if (ammoStack != null)
-        {
-            return ReloadState.Create(ammoStack);
-        }
+        // var ammoStack = owner.Cargo.Extract(_itemId, _missingAmmoQuantity);
+        // if (ammoStack != null)
+        // {
+        //     return ReloadState.Create(ammoStack);
+        // }
 
         if (module.Magazine.IsEmpty())
         {

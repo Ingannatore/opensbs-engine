@@ -1,6 +1,5 @@
 ﻿using OpenSBS.Engine.Automata;
 using OpenSBS.Engine.Models;
-using OpenSBS.Engine.Models.Entities;
 using OpenSBS.Engine.Models.Items;
 using OpenSBS.Engine.Models.Modules;
 using OpenSBS.Engine.Models.Templates;
@@ -63,47 +62,47 @@ public class WeaponModule : Module<WeaponModuleTemplate>
 
     public void ResetTarget() => Target = null;
 
-    public override void HandleAction(ClientAction action, Entity owner)
+    public override void HandleAction(ClientAction action, SpaceEntity owner)
     {
         switch (action.Type)
         {
             case EngageAction:
-            {
-                var targetId = action.PayloadTo<string>()!;
-                Target = owner.Modules.FirstOrDefault<SensorsModule>()?.GetTrace(targetId);
-                break;
-            }
+                {
+                    var targetId = action.PayloadTo<string>()!;
+                    Target = owner.Modules.FirstOrDefault<SensorsModule>()?.GetTrace(targetId);
+                    break;
+                }
 
             case DisengageAction:
-            {
-                Target = null;
-                break;
-            }
+                {
+                    Target = null;
+                    break;
+                }
 
             case ReloadAction:
-            {
-                if (!HasTarget())
                 {
-                    var ammoId = action.PayloadTo<string>()!;
-                    _stateMachine.SetState(this, RequireAmmoState.Create(ammoId));
-                }
+                    if (!HasTarget())
+                    {
+                        var ammoId = action.PayloadTo<string>()!;
+                        _stateMachine.SetState(this, RequireAmmoState.Create(ammoId));
+                    }
 
-                break;
-            }
+                    break;
+                }
 
             case UnloadAction:
-            {
-                if (!HasTarget())
                 {
-                    _stateMachine.SetState(this, UnloadState.Create());
-                }
+                    if (!HasTarget())
+                    {
+                        _stateMachine.SetState(this, UnloadState.Create());
+                    }
 
-                break;
-            }
+                    break;
+                }
         }
     }
 
-    public override void Update(TimeSpan deltaT, Entity owner, World world)
+    public override void Update(TimeSpan deltaT, SpaceEntity owner, World world)
     {
         _stateMachine.Update(deltaT, this, owner, world);
     }

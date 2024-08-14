@@ -5,11 +5,10 @@ namespace OpenSBS.Engine.Models.Items;
 public class ItemCollection : IEnumerable<ItemStack>
 {
     private readonly IDictionary<string, ItemStack> _items = new Dictionary<string, ItemStack>();
-    public int TotalMass => _items.Values.Sum(item => item.Mass);
 
     public bool Contains(string itemId) => _items.ContainsKey(itemId);
 
-    public void Add(Item item, int quantity)
+    public void Add(Entity item, int quantity)
     {
         if (quantity <= 0)
         {

@@ -1,5 +1,4 @@
 ﻿using OpenSBS.Engine.Models;
-using OpenSBS.Engine.Models.Entities;
 using OpenSBS.Engine.Models.Modules;
 using OpenSBS.Engine.Models.Templates;
 
@@ -27,7 +26,7 @@ public class ShieldModule : Module<ShieldModuleTemplate>
         _countdownTimer = new CountdownTimer();
     }
 
-    public override void HandleAction(ClientAction action, Entity owner)
+    public override void HandleAction(ClientAction action, SpaceEntity owner)
     {
         switch (action.Type)
         {
@@ -51,7 +50,7 @@ public class ShieldModule : Module<ShieldModuleTemplate>
         }
     }
 
-    public override void Update(TimeSpan deltaT, Entity owner, World world)
+    public override void Update(TimeSpan deltaT, SpaceEntity owner, World world)
     {
         if (!IsRaised)
         {

@@ -1,13 +1,12 @@
 ﻿namespace OpenSBS.Engine.Models.Items;
 
-public class ItemStack(Item item, int quantity)
+public class ItemStack(Entity item, int quantity)
 {
-    public Item Item { get; } = item;
+    public Entity Item { get; } = item;
     public int Quantity { get; private set; } = quantity;
-    public int Mass => Item.Mass * Quantity;
     public bool IsEmpty => Quantity == 0;
 
-    public static ItemStack Create(Item item, int quantity) => new(item, quantity);
+    public static ItemStack Create(Entity item, int quantity) => new(item, quantity);
 
     public bool IsSameItem(ItemStack otherStack)
     {

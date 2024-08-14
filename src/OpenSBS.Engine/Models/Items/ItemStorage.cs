@@ -12,7 +12,7 @@ public class ItemStorage(int capacity)
         return Items.Contains(itemId) ? Items.Extract(itemId, quantity) : null;
     }
 
-    public void Add(Item item, int quantity = 1)
+    public void Add(Entity item, int quantity = 1)
     {
         Items.Add(item, quantity);
     }

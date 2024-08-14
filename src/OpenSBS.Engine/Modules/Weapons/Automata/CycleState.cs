@@ -1,4 +1,4 @@
-﻿using OpenSBS.Engine.Models.Entities;
+﻿using OpenSBS.Engine.Models;
 
 namespace OpenSBS.Engine.Modules.Weapons.Automata;
 
@@ -15,7 +15,7 @@ public class CycleState : WeaponState
         module.Timer.Reset(module.Template.CycleTime);
     }
 
-    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, Entity owner, World world)
+    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, SpaceEntity owner, World world)
     {
         module.Timer.Advance(deltaT.TotalSeconds);
         return module.Timer.IsCompleted ? FireState.Create() : null;
