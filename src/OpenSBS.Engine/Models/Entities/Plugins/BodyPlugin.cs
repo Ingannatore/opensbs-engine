@@ -3,7 +3,7 @@ using OpenSBS.Engine.Utils;
 
 namespace OpenSBS.Engine.Models.Entities.Plugins;
 
-public class BodyPlugin(Vector3 position, Vector3 direction) : IEntityPlugin
+public class BodyPlugin(Vector3 position, Vector3 direction) : EntityPlugin
 {
     public static string Key = "plugin.body";
     public Vector3 Position { get; private set; } = position;
@@ -14,7 +14,7 @@ public class BodyPlugin(Vector3 position, Vector3 direction) : IEntityPlugin
 
     public BodyPlugin() : this(Vector3.Zero, Vector3.UnitZ) { }
 
-    public void OnTick(TimeSpan deltaT, SpaceEntity owner, World world)
+    public override void OnTick(TimeSpan deltaT, SpaceEntity owner, World world)
     {
         RotateBody(deltaT);
         MoveBody(deltaT);

@@ -9,16 +9,16 @@ public abstract class SpaceEntity : Entity
 {
     public ModuleCollection Modules { get; } = [];
     public PluginCollection Plugins { get; } = [];
-    public BodyPlugin Body => Plugins.FirstOrDefault<BodyPlugin>(BodyPlugin.Key) ?? throw new Exception("Space entity does NOT have a body plugin");
+    public BodyPlugin Body => Plugins.FirstOrDefault<BodyPlugin>() ?? throw new Exception("Space entity does NOT have a body plugin");
 
     public SpaceEntity(string id, string name, EntityTemplate template) : base(id, template.Type, template.Size, name)
     {
-        Plugins.Add(BodyPlugin.Key, new BodyPlugin());
+        Plugins.Add(new BodyPlugin());
     }
 
     public void ApplyDamage(int amount)
     {
-        Plugins.FirstOrDefault<StructurePlugin>(StructurePlugin.Key)?.ApplyDamage(amount);
+        Plugins.FirstOrDefault<StructurePlugin>()?.ApplyDamage(amount);
     }
 
     public void HandleAction(ClientAction action)

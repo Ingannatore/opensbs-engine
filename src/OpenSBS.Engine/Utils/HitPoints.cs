@@ -1,6 +1,6 @@
 namespace OpenSBS.Engine.Utils;
 
-public class BoundedValue(int current, int maximum)
+public class HitPoints(int current, int maximum)
 {
     public int Current { get; private set; } = current;
     public int Maximum { get; } = maximum;

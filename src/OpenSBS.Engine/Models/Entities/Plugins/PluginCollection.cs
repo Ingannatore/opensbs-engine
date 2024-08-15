@@ -2,21 +2,19 @@ using System.Collections;
 
 namespace OpenSBS.Engine.Models.Entities.Plugins;
 
-public class PluginCollection : IEnumerable<IEntityPlugin>
+public class PluginCollection : IEnumerable<EntityPlugin>
 {
-    private readonly IDictionary<string, IEntityPlugin> _plugins = new Dictionary<string, IEntityPlugin>();
+    private readonly ISet<EntityPlugin> _plugins = new HashSet<EntityPlugin>();
 
-    public IEnumerator<IEntityPlugin> GetEnumerator() => _plugins.Values.GetEnumerator();
+    public IEnumerator<EntityPlugin> GetEnumerator() => _plugins.GetEnumerator();
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-    public void Add(string key, IEntityPlugin value) => _plugins.Add(key, value);
-    public void Remove(string key) => _plugins.Remove(key);
-    public bool ContainsKey(string key) => _plugins.ContainsKey(key);
-    public T? FirstOrDefault<T>(string key) where T : IEntityPlugin => _plugins.ContainsKey(key) ? (T)_plugins[key] : default;
+    public void Add(EntityPlugin value) => _plugins.Add(value);
+    public T? FirstOrDefault<T>() where T : EntityPlugin => _plugins.OfType<T>().FirstOrDefault();
 
     public void OnTick(TimeSpan deltaT, SpaceEntity owner, World world)
     {
-        foreach (var plugin in _plugins.Values)
+        foreach (var plugin in _plugins)
         {
             plugin.OnTick(deltaT, owner, world);
         }
