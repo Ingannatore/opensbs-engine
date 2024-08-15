@@ -13,7 +13,7 @@ public class FireState : WeaponState
     {
     }
 
-    public override WeaponState Update(TimeSpan deltaT, WeaponModule module, SpaceEntity owner, World world)
+    public override WeaponState Update(TimeSpan deltaT, WeaponModule module, Celestial owner, World world)
     {
         if (!WeaponHasTarget(module, world))
         {

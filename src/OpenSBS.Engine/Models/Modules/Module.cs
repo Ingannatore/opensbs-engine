@@ -11,6 +11,6 @@ public abstract class Module<T>(string type, T template) : IModule where T : Mod
     public string Name => Template.Name;
     public string ShortName => Template.ShortName;
 
-    public abstract void HandleAction(ClientAction action, SpaceEntity owner);
-    public abstract void Update(TimeSpan deltaT, SpaceEntity owner, World world);
+    public abstract void HandleAction(ClientAction action, Celestial owner);
+    public abstract void Update(TimeSpan deltaT, Celestial owner, World world);
 }

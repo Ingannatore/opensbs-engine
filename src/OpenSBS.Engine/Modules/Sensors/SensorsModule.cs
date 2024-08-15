@@ -25,7 +25,7 @@ public class SensorsModule : Module<SensorsModuleTemplate>
 
     public EntityTrace? GetTrace(string entityId) => Traces.Get(entityId);
 
-    public override void HandleAction(ClientAction action, SpaceEntity owner)
+    public override void HandleAction(ClientAction action, Celestial owner)
     {
         switch (action.Type)
         {
@@ -35,7 +35,7 @@ public class SensorsModule : Module<SensorsModuleTemplate>
         }
     }
 
-    public override void Update(TimeSpan deltaT, SpaceEntity owner, World world)
+    public override void Update(TimeSpan deltaT, Celestial owner, World world)
     {
         foreach (var trace in Traces)
         {

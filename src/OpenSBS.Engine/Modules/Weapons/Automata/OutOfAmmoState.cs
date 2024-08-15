@@ -10,5 +10,5 @@ public class OutOfAmmoState : WeaponState
     {
     }
 
-    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, SpaceEntity owner, World world) => null;
+    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, Celestial owner, World world) => null;
 }

@@ -16,6 +16,6 @@ public class IdleState : WeaponState
         module.Timer.Reset(0);
     }
 
-    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, SpaceEntity owner, World world) =>
+    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, Celestial owner, World world) =>
         WeaponHasTarget(module, world) ? FireState.Create() : null;
 }

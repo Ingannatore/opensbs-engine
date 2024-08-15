@@ -26,10 +26,10 @@ public class TraceSpatialData
         return !firingArcs.Contains(RelativeSide);
     }
 
-    public void Update(SpaceEntity owner, SpaceEntity target)
+    public void Update(Celestial owner, Celestial target)
     {
-        var ownerBody = owner.Body;
-        var targetBody = target.Body;
+        var ownerBody = owner.Plugins.GetBody();
+        var targetBody = target.Plugins.GetBody();
 
         Position = targetBody.Position;
         Sector = Vectors.ToSector(targetBody.Position);

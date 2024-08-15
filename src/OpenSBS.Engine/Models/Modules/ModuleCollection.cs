@@ -24,7 +24,7 @@ public class ModuleCollection : IEnumerable<IModule>
         _modulesIndex.Remove(module.Id);
     }
 
-    public void Update(TimeSpan deltaT, SpaceEntity owner, World world)
+    public void Update(TimeSpan deltaT, Celestial owner, World world)
     {
         foreach (var module in _modules)
         {

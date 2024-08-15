@@ -5,13 +5,12 @@ using OpenSBS.Engine.Models.Templates;
 
 namespace OpenSBS.Engine.Models;
 
-public abstract class SpaceEntity : Entity
+public abstract class Celestial : Entity
 {
     public ModuleCollection Modules { get; } = [];
     public PluginCollection Plugins { get; } = [];
-    public BodyPlugin Body => Plugins.FirstOrDefault<BodyPlugin>() ?? throw new Exception("Space entity does NOT have a body plugin");
 
-    public SpaceEntity(string id, string name, EntityTemplate template) : base(id, template.Type, template.Size, name)
+    public Celestial(string id, string name, EntityTemplate template) : base(id, name, template.Size)
     {
         Plugins.Add(new BodyPlugin());
     }

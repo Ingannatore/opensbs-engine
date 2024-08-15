@@ -15,7 +15,7 @@ public class CycleState : WeaponState
         module.Timer.Reset(module.Template.CycleTime);
     }
 
-    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, SpaceEntity owner, World world)
+    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, Celestial owner, World world)
     {
         module.Timer.Advance(deltaT.TotalSeconds);
         return module.Timer.IsCompleted ? FireState.Create() : null;

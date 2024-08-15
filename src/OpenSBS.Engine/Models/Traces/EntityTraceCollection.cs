@@ -28,7 +28,7 @@ public class EntityTraceCollection : IEnumerable<EntityTrace>
         }
     }
 
-    public void Update(SpaceEntity owner, SpaceEntity target, int range)
+    public void Update(Celestial owner, Celestial target, int range)
     {
         if (!_traces.ContainsKey(target.Id))
         {

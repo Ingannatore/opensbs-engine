@@ -6,5 +6,5 @@ public abstract class EntityPlugin : IEquatable<EntityPlugin>
     public override bool Equals(object? obj) => Equals(obj as EntityPlugin);
     public override int GetHashCode() => GetType().Name.GetHashCode();
 
-    public abstract void OnTick(TimeSpan deltaT, SpaceEntity owner, World world);
+    public abstract void OnTick(TimeSpan deltaT, Celestial owner, World world);
 }

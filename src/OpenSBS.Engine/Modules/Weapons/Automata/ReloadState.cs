@@ -19,7 +19,7 @@ public class ReloadState : WeaponState
         module.Timer.Reset(module.Template.ReloadTime);
     }
 
-    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, SpaceEntity owner, World world)
+    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, Celestial owner, World world)
     {
         module.Timer.Advance(deltaT.TotalSeconds);
         if (!module.Timer.IsCompleted)

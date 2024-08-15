@@ -9,6 +9,6 @@ public interface IModule
     public string Name { get; }
     public string ShortName { get; }
 
-    public void HandleAction(ClientAction action, SpaceEntity owner);
-    public void Update(TimeSpan deltaT, SpaceEntity owner, World world);
+    public void HandleAction(ClientAction action, Celestial owner);
+    public void Update(TimeSpan deltaT, Celestial owner, World world);
 }

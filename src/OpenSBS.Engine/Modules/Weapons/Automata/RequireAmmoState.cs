@@ -19,7 +19,7 @@ public class RequireAmmoState : WeaponState
         _missingAmmoQuantity = module.GetMissingAmmoQuantity(_itemId);
     }
 
-    public override WeaponState Update(TimeSpan deltaT, WeaponModule module, SpaceEntity owner, World world)
+    public override WeaponState Update(TimeSpan deltaT, WeaponModule module, Celestial owner, World world)
     {
         // var ammoStack = owner.Cargo.Extract(_itemId, _missingAmmoQuantity);
         // if (ammoStack != null)

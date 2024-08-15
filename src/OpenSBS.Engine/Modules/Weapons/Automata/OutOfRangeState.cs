@@ -15,7 +15,7 @@ public class OutOfRangeState : WeaponState
         module.Timer.Reset(0);
     }
 
-    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, SpaceEntity owner, World world)
+    public override WeaponState? Update(TimeSpan deltaT, WeaponModule module, Celestial owner, World world)
     {
         if (!WeaponHasTarget(module, world))
         {

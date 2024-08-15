@@ -20,7 +20,7 @@ public class EngineModule : Module<EngineModuleTemplate>
     {
     }
 
-    public override void HandleAction(ClientAction action, SpaceEntity owner)
+    public override void HandleAction(ClientAction action, Celestial owner)
     {
         switch (action.Type)
         {
@@ -34,9 +34,9 @@ public class EngineModule : Module<EngineModuleTemplate>
         }
     }
 
-    public override void Update(TimeSpan deltaT, SpaceEntity owner, World world)
+    public override void Update(TimeSpan deltaT, Celestial owner, World world)
     {
-        var ownerBody = owner.Body;
+        var ownerBody = owner.Plugins.GetBody();
 
         ownerBody.Update(
             CalculateLinearSpeed(deltaT, ownerBody.LinearSpeed),

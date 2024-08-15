@@ -28,7 +28,7 @@ public class ShieldModule : Module<ShieldModuleTemplate>
         _countdownTimer = new CountdownTimer();
     }
 
-    public override void HandleAction(ClientAction action, SpaceEntity owner)
+    public override void HandleAction(ClientAction action, Celestial owner)
     {
         switch (action.Type)
         {
@@ -52,7 +52,7 @@ public class ShieldModule : Module<ShieldModuleTemplate>
         }
     }
 
-    public override void Update(TimeSpan deltaT, SpaceEntity owner, World world)
+    public override void Update(TimeSpan deltaT, Celestial owner, World world)
     {
         if (!IsRaised)
         {

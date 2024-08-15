@@ -8,5 +8,5 @@ public abstract class ModuleState<TM, TS>
     {
     }
 
-    public abstract TS? Update(TimeSpan deltaT, TM module, SpaceEntity owner, World world);
+    public abstract TS? Update(TimeSpan deltaT, TM module, Celestial owner, World world);
 }
