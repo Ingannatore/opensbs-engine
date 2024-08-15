@@ -31,13 +31,6 @@ public class EntityTrace(string id, string initialCallSign, string[,] signature)
             return;
         }
 
-        var shieldModule = target.Modules.FirstOrDefault<ShieldModule>();
-        if (shieldModule != null)
-        {
-            Shield ??= new TraceShieldData();
-            Shield.Update(shieldModule);
-        }
-
         Type = "whatever"; // TODO: temporary, to be replaced
     }
 }

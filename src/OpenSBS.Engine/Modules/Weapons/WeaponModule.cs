@@ -71,7 +71,7 @@ public class WeaponModule : Module<WeaponModuleTemplate>
             case EngageAction:
                 {
                     var targetId = action.PayloadTo<string>()!;
-                    Target = owner.Modules.FirstOrDefault<SensorsModule>()?.GetTrace(targetId);
+                    Target = owner.Plugins.GetModules().FirstOrDefault<SensorsModule>()?.GetTrace(targetId);
                     break;
                 }
 
