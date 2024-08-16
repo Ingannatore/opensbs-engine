@@ -1,7 +1,7 @@
 using System.Numerics;
 using OpenSBS.Engine.Utils;
 
-namespace OpenSBS.Engine.Models.Entities.Plugins;
+namespace OpenSBS.Engine.Models.Plugins;
 
 public class BodyPlugin(Vector3 position, Vector3 direction) : EntityPlugin
 {

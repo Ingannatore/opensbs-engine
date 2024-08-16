@@ -28,19 +28,8 @@ public class WeaponModule : Module<WeaponModuleTemplate>
     }
 
     public bool HasTarget() => Target != null;
-
-    public bool IsTargetUnreachable()
-    {
-        if (Target == null)
-        {
-            return false;
-        }
-
-        return Target.IsOutOfRange(Template.Range) || Target.IsOutOfFiringArc(Template.FiringArcs);
-    }
-
+    public bool IsTargetUnreachable() => Target != null && Target.IsOutOfRange(Template.Range);
     public void ResetTimer() => Timer.Reset(Template.CycleTime);
-
     public void ResetTarget() => Target = null;
 
     public override void HandleAction(ClientAction action, Celestial owner)

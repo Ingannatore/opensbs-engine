@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace OpenSBS.Engine.Models.Entities.Plugins;
+namespace OpenSBS.Engine.Models.Plugins;
 
 public class PluginCollection : IEnumerable<EntityPlugin>
 {

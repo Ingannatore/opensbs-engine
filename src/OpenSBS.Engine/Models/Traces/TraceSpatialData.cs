@@ -1,5 +1,5 @@
 ﻿using System.Numerics;
-using OpenSBS.Engine.Models.Entities.Plugins;
+using OpenSBS.Engine.Models.Plugins;
 using OpenSBS.Engine.Utils;
 
 namespace OpenSBS.Engine.Models.Traces;
@@ -14,16 +14,10 @@ public class TraceSpatialData
     public Vector3 RelativePosition { get; protected set; }
     public Vector3 RelativeSectorPosition { get; protected set; }
     public double RelativeBearing { get; protected set; }
-    public string RelativeSide { get; protected set; }
 
     public bool IsOutOfRange(int range)
     {
         return Distance > range;
-    }
-
-    public bool IsOutOfFiringArc(IEnumerable<string> firingArcs)
-    {
-        return !firingArcs.Contains(RelativeSide);
     }
 
     public void Update(Celestial owner, Celestial target)
@@ -41,6 +35,5 @@ public class TraceSpatialData
 
         var relativeDirection = Vector3.Normalize(RelativePosition);
         RelativeBearing = Angles.GetBearing(relativeDirection);
-        RelativeSide = Angles.ToEntitySide(ownerBody.Direction, relativeDirection);
     }
 }

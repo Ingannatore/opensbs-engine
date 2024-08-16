@@ -9,23 +9,16 @@ namespace OpenSBS.Engine.Modules.Shields;
 public class ShieldModule : Module<ShieldModuleTemplate>
 {
     private const string ToggleAction = "toggle";
-    private const string SetCalibrationAction = "setCalibration";
-    private const string ResetCalibrationAction = "resetCalibration";
-    private const string ReinforceSideAction = "reinforceSide";
-    private readonly CountdownTimer _countdownTimer;
+    private readonly CountdownTimer _countdownTimer = new();
 
-    public bool IsRaised { get; protected set; }
-    public ShieldSectorCollection Sectors { get; }
-    public int AvailableCalibrationPoints => Sectors.GetAvailableCalibrationPoints();
+    public bool IsRaised { get; protected set; } = false;
+    public ShieldSector Sector { get; }
 
     public static ShieldModule Create(ShieldModuleTemplate template) => new(template);
 
     private ShieldModule(ShieldModuleTemplate template) : base(ModuleType.Shield, template)
     {
-        IsRaised = false;
-        Sectors = new ShieldSectorCollection(Template.Capacity, Template.RechargeRate);
-
-        _countdownTimer = new CountdownTimer();
+        Sector = new ShieldSector(template.Capacity, template.RechargeRate);
     }
 
     public override void HandleAction(ClientAction action, Celestial owner)
@@ -39,15 +32,6 @@ public class ShieldModule : Module<ShieldModuleTemplate>
                     _countdownTimer.Reset(1);
                 }
 
-                break;
-            case SetCalibrationAction:
-                Sectors.SetCalibration(action.PayloadTo<CalibrationPayload>()!);
-                break;
-            case ResetCalibrationAction:
-                Sectors.ResetCalibration();
-                break;
-            case ReinforceSideAction:
-                Sectors.Reinforce(action.PayloadTo<string>()!);
                 break;
         }
     }
@@ -65,7 +49,7 @@ public class ShieldModule : Module<ShieldModuleTemplate>
             return;
         }
 
-        Sectors.Update();
+        Sector.Update();
         _countdownTimer.Reset(1);
     }
 }

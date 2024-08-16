@@ -2,7 +2,7 @@
 using System.Collections;
 using OpenSBS.Engine.Utils;
 
-namespace OpenSBS.Engine.Models.Entities.Plugins;
+namespace OpenSBS.Engine.Models.Plugins;
 
 public class CargoPlugin(int size) : EntityPlugin, IEnumerable<ItemStack>
 {

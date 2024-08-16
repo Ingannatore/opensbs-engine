@@ -2,7 +2,7 @@
 using System.Collections;
 using OpenSBS.Engine.Models.Modules;
 
-namespace OpenSBS.Engine.Models.Entities.Plugins;
+namespace OpenSBS.Engine.Models.Plugins;
 
 public class ModularPlugin : EntityPlugin, IEnumerable<IModule>
 {
