@@ -14,7 +14,7 @@ public class ModularPlugin : EntityPlugin, IEnumerable<IModule>
     public IEnumerator<IModule> GetEnumerator() => _modules.Values.GetEnumerator();
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-    public override void OnTick(TimeSpan deltaT, Celestial owner, World world)
+    public override void OnTick(World world, Celestial owner, TimeSpan deltaT)
     {
         foreach (var module in _modules.Values)
         {

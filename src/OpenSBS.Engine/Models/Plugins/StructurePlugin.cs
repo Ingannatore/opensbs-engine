@@ -11,7 +11,7 @@ public class StructurePlugin(int hitPoints) : EntityPlugin
     public void Repair(int amount) => HitPoints.Inc(amount);
     public void ApplyDamage(int amount) => HitPoints.Dec(amount);
 
-    public override void OnTick(TimeSpan deltaT, Celestial owner, World world)
+    public override void OnTick(World world, Celestial owner, TimeSpan deltaT)
     {
         if (HitPoints.IsEmpty)
         {

@@ -22,7 +22,7 @@ namespace OpenSBS.Engine
                 //     continue;
                 // }
 
-                entity.Update(deltaT, this);
+                entity.OnTick(this, entity, deltaT);
             }
         }
 

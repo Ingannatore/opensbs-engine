@@ -14,7 +14,7 @@ public class BodyPlugin(Vector3 position, Vector3 direction) : EntityPlugin
 
     public BodyPlugin() : this(Vector3.Zero, Vector3.UnitZ) { }
 
-    public override void OnTick(TimeSpan deltaT, Celestial owner, World world)
+    public override void OnTick(World world, Celestial owner, TimeSpan deltaT)
     {
         RotateBody(deltaT);
         MoveBody(deltaT);

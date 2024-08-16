@@ -4,7 +4,7 @@ using OpenSBS.Engine.Models.Templates;
 
 namespace OpenSBS.Engine.Models;
 
-public abstract class Celestial : Entity
+public abstract class Celestial : Entity, ITickable<Entity>
 {
     public PluginCollection Plugins { get; } = [];
 
@@ -26,8 +26,8 @@ public abstract class Celestial : Entity
         }
     }
 
-    public void Update(TimeSpan deltaT, World world)
+    public void OnTick(World world, Entity owner, TimeSpan deltaT)
     {
-        Plugins.OnTick(deltaT, this, world);
+        Plugins.OnTick(world, this, deltaT);
     }
 }
