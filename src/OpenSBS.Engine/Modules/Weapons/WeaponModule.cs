@@ -8,14 +8,13 @@ using OpenSBS.Engine.Utils;
 
 namespace OpenSBS.Engine.Modules.Weapons;
 
-public class WeaponModule : Module<WeaponModuleTemplate>
+public class WeaponModule : EntityModule<WeaponModuleTemplate>
 {
     private const string EngageAction = "engage";
     private const string DisengageAction = "disengage";
 
-    public EntityTrace? Target { get; private set; }
+    public string? Target { get; private set; }
     public CountdownTimer Timer { get; }
-    public IEnumerable<string> FiringArcs => Template.FiringArcs;
 
     public static WeaponModule Create(WeaponModuleTemplate template)
     {
@@ -28,18 +27,16 @@ public class WeaponModule : Module<WeaponModuleTemplate>
     }
 
     public bool HasTarget() => Target != null;
-    public bool IsTargetUnreachable() => Target != null && Target.IsOutOfRange(Template.Range);
     public void ResetTimer() => Timer.Reset(Template.CycleTime);
     public void ResetTarget() => Target = null;
 
-    public override void HandleAction(ClientAction action, Celestial owner)
+    public override void OnCommand(ClientAction command)
     {
-        switch (action.Type)
+        switch (command.Type)
         {
             case EngageAction:
                 {
-                    var targetId = action.PayloadTo<string>()!;
-                    Target = owner.Plugins.GetModules().FirstOrDefault<SensorsModule>()?.GetTrace(targetId);
+                    Target = command.PayloadTo<string>()!;
                     break;
                 }
 
@@ -51,7 +48,8 @@ public class WeaponModule : Module<WeaponModuleTemplate>
         }
     }
 
-    public override void Update(TimeSpan deltaT, Celestial owner, World world)
+    public override void OnTick(World world, Entity owner, TimeSpan deltaT)
     {
+        var targetTrace = (owner as Spaceship)?.Plugins.GetModules().FirstOrDefault<SensorsModule>()?.GetTrace(Target);
     }
 }

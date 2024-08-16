@@ -5,7 +5,7 @@ using OpenSBS.Engine.Models.Templates;
 
 namespace OpenSBS.Engine.Modules.Engines;
 
-public class EngineModule : Module<EngineModuleTemplate>
+public class EngineModule : EntityModule<EngineModuleTemplate>
 {
     private const string SetThrottleAction = "setThrottle";
     private const string SetRudderAction = "setRudder";
@@ -15,12 +15,9 @@ public class EngineModule : Module<EngineModuleTemplate>
     public double TargetSpeed { get; protected set; }
 
     public static EngineModule Create(EngineModuleTemplate template) => new(template);
+    private EngineModule(EngineModuleTemplate template) : base(ModuleType.Engine, template) { }
 
-    private EngineModule(EngineModuleTemplate template) : base(ModuleType.Engine, template)
-    {
-    }
-
-    public override void HandleAction(ClientAction action, Celestial owner)
+    public override void OnCommand(ClientAction action)
     {
         switch (action.Type)
         {
@@ -29,14 +26,13 @@ public class EngineModule : Module<EngineModuleTemplate>
                 break;
             case SetRudderAction:
                 Rudder = action.PayloadTo<int>();
-                Console.WriteLine($"Set RUDDER to {Rudder}");
                 break;
         }
     }
 
-    public override void Update(TimeSpan deltaT, Celestial owner, World world)
+    public override void OnTick(World world, Entity owner, TimeSpan deltaT)
     {
-        var ownerBody = owner.Plugins.GetBody();
+        var ownerBody = (owner as Spaceship)?.Plugins.GetBody() ?? throw new Exception("Module owner is not a Spaceship");
 
         ownerBody.Update(
             CalculateLinearSpeed(deltaT, ownerBody.LinearSpeed),

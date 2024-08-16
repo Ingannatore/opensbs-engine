@@ -1,29 +1,15 @@
-﻿using OpenSBS.Engine.Models.Actions;
+﻿using OpenSBS.Engine.Models.Behaviours;
 using OpenSBS.Engine.Models.Plugins;
-using OpenSBS.Engine.Models.Templates;
 
 namespace OpenSBS.Engine.Models;
 
-public abstract class Celestial : Entity, ITickable<Entity>
+public class Celestial : Entity, ITickable
 {
     public PluginCollection Plugins { get; } = [];
 
     public Celestial(string id, string name, EntityTemplate template) : base(id, name, template.Size)
     {
-        Plugins.Add(new BodyPlugin(), new ModularPlugin());
-    }
-
-    public void ApplyDamage(int amount)
-    {
-        Plugins.FirstOrDefault<StructurePlugin>()?.ApplyDamage(amount);
-    }
-
-    public void HandleAction(ClientAction action)
-    {
-        if (!string.IsNullOrEmpty(action.Meta.Module))
-        {
-            Plugins.FirstOrDefault<ModularPlugin>()?.Get(action.Meta.Module).HandleAction(action, this);
-        }
+        Plugins.Add(new BodyPlugin());
     }
 
     public void OnTick(World world, Entity owner, TimeSpan deltaT)

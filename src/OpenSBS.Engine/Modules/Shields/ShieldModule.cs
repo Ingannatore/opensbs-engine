@@ -6,7 +6,7 @@ using OpenSBS.Engine.Utils;
 
 namespace OpenSBS.Engine.Modules.Shields;
 
-public class ShieldModule : Module<ShieldModuleTemplate>
+public class ShieldModule : EntityModule<ShieldModuleTemplate>
 {
     private const string ToggleAction = "toggle";
     private readonly CountdownTimer _countdownTimer = new();
@@ -21,9 +21,9 @@ public class ShieldModule : Module<ShieldModuleTemplate>
         Sector = new ShieldSector(template.Capacity, template.RechargeRate);
     }
 
-    public override void HandleAction(ClientAction action, Celestial owner)
+    public override void OnCommand(ClientAction command)
     {
-        switch (action.Type)
+        switch (command.Type)
         {
             case ToggleAction:
                 IsRaised = !IsRaised;
@@ -36,7 +36,7 @@ public class ShieldModule : Module<ShieldModuleTemplate>
         }
     }
 
-    public override void Update(TimeSpan deltaT, Celestial owner, World world)
+    public override void OnTick(World world, Entity owner, TimeSpan deltaT)
     {
         if (!IsRaised)
         {

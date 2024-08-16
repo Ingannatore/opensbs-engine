@@ -1,6 +1,6 @@
 ﻿namespace OpenSBS.Engine.Models.Templates;
 
-public abstract class EngineModuleTemplate : ModuleTemplate
+public abstract class EngineModuleTemplate(string id, string name, int size) : ModuleTemplate(id, name, size)
 {
     public int MaximumSpeed { get; protected set; }
     public int Acceleration { get; protected set; }

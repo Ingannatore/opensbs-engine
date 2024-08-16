@@ -1,24 +1,23 @@
-
 using System.Collections;
-using OpenSBS.Engine.Models.Modules;
+using OpenSBS.Engine.Models.Behaviours;
 
 namespace OpenSBS.Engine.Models.Plugins;
 
-public class ModularPlugin : EntityPlugin, IEnumerable<IModule>
+public class ModularPlugin : EntityPlugin, IEnumerable<IEntityModule>, ITickable
 {
-    private readonly IDictionary<string, IModule> _modules = new Dictionary<string, IModule>();
+    private readonly IDictionary<string, IEntityModule> _modules = new Dictionary<string, IEntityModule>();
 
-    public IModule Get(string id) => _modules[id];
-    public T? FirstOrDefault<T>() where T : IModule => _modules.Values.OfType<T>().FirstOrDefault();
+    public IEntityModule Get(string id) => _modules[id];
+    public T? FirstOrDefault<T>() where T : IEntityModule => _modules.Values.OfType<T>().FirstOrDefault();
 
-    public IEnumerator<IModule> GetEnumerator() => _modules.Values.GetEnumerator();
+    public IEnumerator<IEntityModule> GetEnumerator() => _modules.Values.GetEnumerator();
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-    public override void OnTick(World world, Celestial owner, TimeSpan deltaT)
+    public void OnTick(World world, Entity owner, TimeSpan deltaT)
     {
         foreach (var module in _modules.Values)
         {
-            module.Update(deltaT, owner, world);
+            module.OnTick(world, owner, deltaT);
         }
     }
 }

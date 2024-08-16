@@ -1,11 +1,11 @@
 using System.Numerics;
+using OpenSBS.Engine.Models.Behaviours;
 using OpenSBS.Engine.Utils;
 
 namespace OpenSBS.Engine.Models.Plugins;
 
-public class BodyPlugin(Vector3 position, Vector3 direction) : EntityPlugin
+public class BodyPlugin(Vector3 position, Vector3 direction) : EntityPlugin, ITickable
 {
-    public static string Key = "plugin.body";
     public Vector3 Position { get; private set; } = position;
     public Vector3 Direction { get; private set; } = direction;
     public double Bearing { get; private set; } = Angles.GetBearing(direction);
@@ -14,7 +14,7 @@ public class BodyPlugin(Vector3 position, Vector3 direction) : EntityPlugin
 
     public BodyPlugin() : this(Vector3.Zero, Vector3.UnitZ) { }
 
-    public override void OnTick(World world, Celestial owner, TimeSpan deltaT)
+    public void OnTick(World world, Entity owner, TimeSpan deltaT)
     {
         RotateBody(deltaT);
         MoveBody(deltaT);

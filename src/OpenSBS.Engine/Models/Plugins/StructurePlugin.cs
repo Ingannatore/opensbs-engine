@@ -1,21 +1,13 @@
+using OpenSBS.Engine.Models.Behaviours;
 using OpenSBS.Engine.Utils;
 
 namespace OpenSBS.Engine.Models.Plugins;
 
-public class StructurePlugin(int hitPoints) : EntityPlugin
+public class StructurePlugin(int hitPoints) : EntityPlugin, IDamageable
 {
-    public static string Key = "plugin.structure";
     public BoundedValue HitPoints { get; } = new(hitPoints, hitPoints);
     public bool IsDestroyed => HitPoints.IsEmpty;
 
     public void Repair(int amount) => HitPoints.Inc(amount);
-    public void ApplyDamage(int amount) => HitPoints.Dec(amount);
-
-    public override void OnTick(World world, Celestial owner, TimeSpan deltaT)
-    {
-        if (HitPoints.IsEmpty)
-        {
-            // TODO: what to do? is this needed?
-        }
-    }
+    public void OnDamage(int amount) => HitPoints.Dec(amount);
 }

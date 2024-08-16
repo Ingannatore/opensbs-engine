@@ -6,7 +6,7 @@ using OpenSBS.Engine.Models.Traces;
 
 namespace OpenSBS.Engine.Modules.Sensors;
 
-public class SensorsModule : Module<SensorsModuleTemplate>
+public class SensorsModule : EntityModule<SensorsModuleTemplate>
 {
     private const string ScanCompletedAction = "scanCompleted";
 
@@ -25,17 +25,17 @@ public class SensorsModule : Module<SensorsModuleTemplate>
 
     public EntityTrace? GetTrace(string entityId) => Traces.Get(entityId);
 
-    public override void HandleAction(ClientAction action, Celestial owner)
+    public override void OnCommand(ClientAction command)
     {
-        switch (action.Type)
+        switch (command.Type)
         {
             case ScanCompletedAction:
-                Traces.CompleteScansion(action.PayloadTo<string>()!);
+                Traces.CompleteScansion(command.PayloadTo<string>()!);
                 break;
         }
     }
 
-    public override void Update(TimeSpan deltaT, Celestial owner, World world)
+    public override void OnTick(World world, Entity owner, TimeSpan deltaT)
     {
         foreach (var trace in Traces)
         {

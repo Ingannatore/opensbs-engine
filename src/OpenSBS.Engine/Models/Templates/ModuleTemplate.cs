@@ -1,9 +1,3 @@
 ﻿namespace OpenSBS.Engine.Models.Templates;
 
-public abstract class ModuleTemplate
-{
-    public string Name { get; protected set; }
-    public string ShortName { get; protected set; }
-    public int Mass { get; protected set; }
-    public int Size { get; protected set; }
-}
+public abstract class ModuleTemplate(string id, string name, int size) : EntityTemplate(id, name, size) { }

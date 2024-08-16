@@ -1,7 +1,7 @@
 namespace OpenSBS.Engine.Models;
 
-public class ItemStack(string id, int quantity)
+public class ItemStack(string itemId, int quantity)
 {
-    public string Id { get; } = id;
+    public string ItemId { get; } = itemId;
     public int Quantity { get; } = quantity;
 }
