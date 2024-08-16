@@ -5,7 +5,7 @@ namespace OpenSBS.Engine.Models.Entities.Plugins;
 public class StructurePlugin(int hitPoints) : EntityPlugin
 {
     public static string Key = "plugin.structure";
-    public HitPoints HitPoints { get; } = new(hitPoints, hitPoints);
+    public BoundedValue HitPoints { get; } = new(hitPoints, hitPoints);
     public bool IsDestroyed => HitPoints.IsZero;
 
     public void Repair(int amount) => HitPoints.Inc(amount);
