@@ -1,6 +1,6 @@
-﻿namespace OpenSBS.Engine.Models.Modules;
+﻿namespace OpenSBS.Engine.Modules;
 
-public static class ModuleType
+public static class SpaceshipModuleCategory
 {
     public const string Engine = "module.engine";
     public const string Shield = "module.shield";

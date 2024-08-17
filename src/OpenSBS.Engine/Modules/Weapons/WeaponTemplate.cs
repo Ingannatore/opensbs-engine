@@ -1,9 +1,7 @@
-using OpenSBS.Engine.Models;
-
 namespace OpenSBS.Engine.Modules.Weapons;
 
 public abstract record WeaponTemplate(
-    string Id,
+    string Code,
     string Name,
     int Size,
     int Damage,
@@ -12,4 +10,4 @@ public abstract record WeaponTemplate(
     int MagazineSize,
     int CycleTime,
     int ReloadTime
-) : EntityTemplate(Id, Name, Size);
+) : SpaceshipModuleTemplate(Code, Name, Size, SpaceshipModuleCategory.Weapon);

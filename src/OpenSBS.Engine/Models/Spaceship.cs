@@ -2,16 +2,18 @@
 using OpenSBS.Engine.Models.Actions;
 using OpenSBS.Engine.Models.Behaviours;
 using OpenSBS.Engine.Models.Plugins;
+using OpenSBS.Engine.Modules;
 
 namespace OpenSBS.Engine.Models;
 
 public class Spaceship : Entity, ICommandable, IDamageable, ITickable
 {
     public PluginCollection Plugins { get; } = [];
+    public SpaceshipModuleCollection Modules { get; } = [];
 
     public Spaceship(string id, string name, int size) : base(id, name, size)
     {
-        Plugins.Add(new BodyPlugin(), new ModularPlugin(), new StructurePlugin(999));
+        Plugins.Add(new BodyPlugin(), new StructurePlugin(999));
     }
 
     public void OnCommand(ClientAction command)
@@ -20,9 +22,5 @@ public class Spaceship : Entity, ICommandable, IDamageable, ITickable
     }
 
     public void OnDamage(int amount) => Plugins.GetStructure().OnDamage(amount);
-
-    public void OnTick(World world, Entity owner, TimeSpan deltaT)
-    {
-        Plugins.OnTick(world, this, deltaT);
-    }
+    public void OnTick(World world, Entity owner, TimeSpan deltaT) => Plugins.OnTick(world, this, deltaT);
 }

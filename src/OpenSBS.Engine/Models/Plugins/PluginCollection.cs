@@ -1,5 +1,6 @@
 using System.Collections;
 using OpenSBS.Engine.Models.Behaviours;
+using OpenSBS.Engine.Modules;
 
 namespace OpenSBS.Engine.Models.Plugins;
 
@@ -12,7 +13,7 @@ public class PluginCollection : IEnumerable<EntityPlugin>, ITickable
 
     public BodyPlugin GetBody() => FirstOrDefault<BodyPlugin>() ?? throw new Exception("Body plugin not found");
     public StructurePlugin GetStructure() => FirstOrDefault<StructurePlugin>() ?? throw new Exception("Structure plugin not found");
-    public ModularPlugin GetModules() => FirstOrDefault<ModularPlugin>() ?? throw new Exception("Modular plugin not found");
+    public SpaceshipModuleCollection GetModules() => FirstOrDefault<SpaceshipModuleCollection>() ?? throw new Exception("Modular plugin not found");
 
     public void OnTick(World world, Entity owner, TimeSpan deltaT)
     {

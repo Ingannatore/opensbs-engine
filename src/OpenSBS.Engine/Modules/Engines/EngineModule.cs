@@ -1,10 +1,9 @@
 ﻿using OpenSBS.Engine.Models;
 using OpenSBS.Engine.Models.Actions;
-using OpenSBS.Engine.Models.Modules;
 
 namespace OpenSBS.Engine.Modules.Engines;
 
-public class EngineModule : EntityModule<EngineTemplate>
+public class EngineModule(EngineTemplate template) : SpaceshipModule<EngineTemplate>(template)
 {
     private const string SetThrottleAction = "setThrottle";
     private const string SetRudderAction = "setRudder";
@@ -12,9 +11,6 @@ public class EngineModule : EntityModule<EngineTemplate>
     public int Throttle { get; protected set; }
     public int Rudder { get; protected set; }
     public double TargetSpeed { get; protected set; }
-
-    public static EngineModule Create(EngineTemplate template) => new(template);
-    private EngineModule(EngineTemplate template) : base(ModuleType.Engine, template) { }
 
     public override void OnCommand(ClientAction command)
     {

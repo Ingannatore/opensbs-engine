@@ -10,7 +10,7 @@ namespace OpenSBS.Engine
         public bool ExistsEntity(string id) => _entities.ContainsKey(id);
         public Celestial GetEntity(string id) => _entities[id];
         public void AddEntity(Celestial entity) => _entities[entity.Id] = entity;
-        public void DamageEntity(string id, int amount) => _entities[id].ApplyDamage(amount);
+        //public void DamageEntity(string id, int amount) => _entities[id].ApplyDamage(amount);
 
         public void Update(TimeSpan deltaT)
         {
