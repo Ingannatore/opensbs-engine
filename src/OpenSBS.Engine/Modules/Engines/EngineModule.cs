@@ -1,11 +1,10 @@
 ﻿using OpenSBS.Engine.Models;
 using OpenSBS.Engine.Models.Actions;
 using OpenSBS.Engine.Models.Modules;
-using OpenSBS.Engine.Models.Templates;
 
 namespace OpenSBS.Engine.Modules.Engines;
 
-public class EngineModule : EntityModule<EngineModuleTemplate>
+public class EngineModule : EntityModule<EngineTemplate>
 {
     private const string SetThrottleAction = "setThrottle";
     private const string SetRudderAction = "setRudder";
@@ -14,18 +13,18 @@ public class EngineModule : EntityModule<EngineModuleTemplate>
     public int Rudder { get; protected set; }
     public double TargetSpeed { get; protected set; }
 
-    public static EngineModule Create(EngineModuleTemplate template) => new(template);
-    private EngineModule(EngineModuleTemplate template) : base(ModuleType.Engine, template) { }
+    public static EngineModule Create(EngineTemplate template) => new(template);
+    private EngineModule(EngineTemplate template) : base(ModuleType.Engine, template) { }
 
-    public override void OnCommand(ClientAction action)
+    public override void OnCommand(ClientAction command)
     {
-        switch (action.Type)
+        switch (command.Type)
         {
             case SetThrottleAction:
-                Throttle = action.PayloadTo<int>();
+                Throttle = command.PayloadTo<int>();
                 break;
             case SetRudderAction:
-                Rudder = action.PayloadTo<int>();
+                Rudder = command.PayloadTo<int>();
                 break;
         }
     }

@@ -1,12 +1,11 @@
 ﻿using OpenSBS.Engine.Models;
 using OpenSBS.Engine.Models.Actions;
 using OpenSBS.Engine.Models.Modules;
-using OpenSBS.Engine.Models.Templates;
 using OpenSBS.Engine.Utils;
 
 namespace OpenSBS.Engine.Modules.Shields;
 
-public class ShieldModule : EntityModule<ShieldModuleTemplate>
+public class ShieldModule : EntityModule<ShieldTemplate>
 {
     private const string ToggleAction = "toggle";
     private readonly CountdownTimer _countdownTimer = new();
@@ -14,9 +13,9 @@ public class ShieldModule : EntityModule<ShieldModuleTemplate>
     public bool IsRaised { get; protected set; } = false;
     public ShieldSector Sector { get; }
 
-    public static ShieldModule Create(ShieldModuleTemplate template) => new(template);
+    public static ShieldModule Create(ShieldTemplate template) => new(template);
 
-    private ShieldModule(ShieldModuleTemplate template) : base(ModuleType.Shield, template)
+    private ShieldModule(ShieldTemplate template) : base(ModuleType.Shield, template)
     {
         Sector = new ShieldSector(template.Capacity, template.RechargeRate);
     }

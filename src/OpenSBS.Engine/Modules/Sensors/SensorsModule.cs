@@ -1,24 +1,23 @@
 ﻿using OpenSBS.Engine.Models;
 using OpenSBS.Engine.Models.Actions;
 using OpenSBS.Engine.Models.Modules;
-using OpenSBS.Engine.Models.Templates;
 using OpenSBS.Engine.Models.Traces;
 
 namespace OpenSBS.Engine.Modules.Sensors;
 
-public class SensorsModule : EntityModule<SensorsModuleTemplate>
+public class SensorsModule : EntityModule<SensorsTemplate>
 {
     private const string ScanCompletedAction = "scanCompleted";
 
     public EntityTraceCollection Traces { get; }
     public int Range => Template.Range;
 
-    public static SensorsModule Create(SensorsModuleTemplate template)
+    public static SensorsModule Create(SensorsTemplate template)
     {
         return new SensorsModule(template);
     }
 
-    private SensorsModule(SensorsModuleTemplate template) : base(ModuleType.Sensors, template)
+    private SensorsModule(SensorsTemplate template) : base(ModuleType.Sensors, template)
     {
         Traces = new EntityTraceCollection();
     }

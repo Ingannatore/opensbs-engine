@@ -1,14 +1,12 @@
 ﻿using OpenSBS.Engine.Models;
 using OpenSBS.Engine.Models.Actions;
 using OpenSBS.Engine.Models.Modules;
-using OpenSBS.Engine.Models.Templates;
-using OpenSBS.Engine.Models.Traces;
 using OpenSBS.Engine.Modules.Sensors;
 using OpenSBS.Engine.Utils;
 
 namespace OpenSBS.Engine.Modules.Weapons;
 
-public class WeaponModule : EntityModule<WeaponModuleTemplate>
+public class WeaponModule : EntityModule<WeaponTemplate>
 {
     private const string EngageAction = "engage";
     private const string DisengageAction = "disengage";
@@ -16,12 +14,12 @@ public class WeaponModule : EntityModule<WeaponModuleTemplate>
     public string? Target { get; private set; }
     public CountdownTimer Timer { get; }
 
-    public static WeaponModule Create(WeaponModuleTemplate template)
+    public static WeaponModule Create(WeaponTemplate template)
     {
         return new WeaponModule(template);
     }
 
-    private WeaponModule(WeaponModuleTemplate template) : base(ModuleType.Weapon, template)
+    private WeaponModule(WeaponTemplate template) : base(ModuleType.Weapon, template)
     {
         Timer = new CountdownTimer();
     }

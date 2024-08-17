@@ -1,13 +1,13 @@
 using OpenSBS.Engine.Models.Actions;
 using OpenSBS.Engine.Models.Behaviours;
-using OpenSBS.Engine.Models.Templates;
 
 namespace OpenSBS.Engine.Models;
 
 public abstract class EntityModule<T>(
     string id,
+    string name,
     T template
-) : Entity(id, template.Name, template.Size), ICommandable, IEntityModule, ITickable where T : ModuleTemplate
+) : Entity(id, name, template.Size), ICommandable, IEntityModule, ITickable where T : EntityTemplate
 {
     public T Template = template;
 

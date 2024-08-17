@@ -1,3 +1,6 @@
 namespace OpenSBS.Engine.Models;
 
-public class ItemTemplate(string id, string name) : EntityTemplate(id, name, 1) { }
+public abstract record ItemTemplate(
+    string Id,
+    string Name
+) : EntityTemplate(Id, Name, 1);
