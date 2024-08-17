@@ -5,11 +5,12 @@ using OpenSBS.Engine.Utils;
 
 namespace OpenSBS.Engine.Modules.Weapons;
 
-public class WeaponModule(WeaponTemplate template) : SpaceshipModule<WeaponTemplate>(template)
+public class WeaponModule(WeaponTemplate template) : SpaceshipModule
 {
     private const string EngageAction = "engage";
     private const string DisengageAction = "disengage";
 
+    public readonly WeaponTemplate Template = template;
     public readonly CountdownTimer Timer = new();
     public string? Target { get; private set; }
 

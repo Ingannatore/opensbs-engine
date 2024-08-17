@@ -4,14 +4,19 @@ using OpenSBS.Engine.Entities;
 
 namespace OpenSBS.Engine.Modules;
 
-public class SpaceshipModuleCollection : IEnumerable<ISpaceshipModule>, ITickable
+public class SpaceshipModuleCollection : IEnumerable<SpaceshipModule>, ITickable
 {
-    private readonly IDictionary<string, ISpaceshipModule> _modules = new Dictionary<string, ISpaceshipModule>();
+    private readonly IDictionary<Guid, SpaceshipModule> _modules;
 
-    public ISpaceshipModule Get(string id) => _modules[id];
-    public T? FirstOrDefault<T>() where T : ISpaceshipModule => _modules.Values.OfType<T>().FirstOrDefault();
+    public SpaceshipModuleCollection(SpaceshipModule[]? modules = null)
+    {
+        _modules = modules?.ToDictionary(module => module.Id, module => module) ?? [];
+    }
 
-    public IEnumerator<ISpaceshipModule> GetEnumerator() => _modules.Values.GetEnumerator();
+    public SpaceshipModule Get(Guid id) => _modules[id];
+    public T? FirstOrDefault<T>() where T : SpaceshipModule => _modules.Values.OfType<T>().FirstOrDefault();
+
+    public IEnumerator<SpaceshipModule> GetEnumerator() => _modules.Values.GetEnumerator();
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
     public void OnTick(World world, Entity owner, TimeSpan deltaT)

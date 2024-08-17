@@ -3,10 +3,9 @@ using OpenSBS.Engine.Entities;
 
 namespace OpenSBS.Engine.Modules;
 
-public abstract class SpaceshipModule<T>(T template) : ISpaceshipModule where T : SpaceshipModuleTemplate
+public abstract class SpaceshipModule
 {
     public readonly Guid Id = Guid.NewGuid();
-    public readonly T Template = template;
 
     public abstract void OnCommand(ClientAction command);
     public abstract void OnTick(World world, Entity owner, TimeSpan deltaT);

@@ -4,10 +4,11 @@ using OpenSBS.Engine.Traces;
 
 namespace OpenSBS.Engine.Modules.Sensors;
 
-public class SensorsModule(SensorsTemplate template) : SpaceshipModule<SensorsTemplate>(template)
+public class SensorsModule(SensorsTemplate template) : SpaceshipModule
 {
     private const string ScanCompletedAction = "scanCompleted";
 
+    public readonly SensorsTemplate Template = template;
     public readonly EntityTraceCollection Traces = new();
 
     public EntityTrace? GetTrace(string entityId) => Traces.Get(entityId);

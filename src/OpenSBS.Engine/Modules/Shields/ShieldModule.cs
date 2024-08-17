@@ -4,11 +4,12 @@ using OpenSBS.Engine.Utils;
 
 namespace OpenSBS.Engine.Modules.Shields;
 
-public class ShieldModule(ShieldTemplate template) : SpaceshipModule<ShieldTemplate>(template)
+public class ShieldModule(ShieldTemplate template) : SpaceshipModule
 {
     private const string ToggleAction = "toggle";
     private readonly CountdownTimer _countdownTimer = new();
 
+    public readonly ShieldTemplate Template = template;
     public bool IsRaised { get; protected set; } = false;
     public ShieldSector Sector { get; } = new ShieldSector(template.Capacity, template.RechargeRate);
 

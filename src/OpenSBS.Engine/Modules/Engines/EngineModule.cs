@@ -3,11 +3,12 @@ using OpenSBS.Engine.Entities;
 
 namespace OpenSBS.Engine.Modules.Engines;
 
-public class EngineModule(EngineTemplate template) : SpaceshipModule<EngineTemplate>(template)
+public class EngineModule(EngineTemplate template) : SpaceshipModule
 {
     private const string SetThrottleAction = "setThrottle";
     private const string SetRudderAction = "setRudder";
 
+    public readonly EngineTemplate Template = template;
     public int Throttle { get; protected set; }
     public int Rudder { get; protected set; }
     public double TargetSpeed { get; protected set; }
