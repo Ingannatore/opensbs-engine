@@ -1,8 +1,8 @@
-using OpenSBS.Engine.Actions;
+using OpenSBS.Engine.Commands;
 
 namespace OpenSBS.Engine.Behaviours;
 
 public interface ICommandable
 {
-    public void OnCommand(ClientAction command);
+    public void OnCommand(Command command);
 }

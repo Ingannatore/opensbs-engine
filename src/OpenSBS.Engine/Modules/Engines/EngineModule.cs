@@ -1,4 +1,4 @@
-﻿using OpenSBS.Engine.Actions;
+﻿using OpenSBS.Engine.Commands;
 using OpenSBS.Engine.Entities;
 
 namespace OpenSBS.Engine.Modules.Engines;
@@ -13,7 +13,7 @@ public class EngineModule(EngineTemplate template) : SpaceshipModule
     public int Rudder { get; protected set; }
     public double TargetSpeed { get; protected set; }
 
-    public override void OnCommand(ClientAction command)
+    public override void OnCommand(Command command)
     {
         switch (command.Type)
         {

@@ -1,4 +1,4 @@
-﻿using OpenSBS.Engine.Actions;
+﻿using OpenSBS.Engine.Commands;
 using OpenSBS.Engine.Entities;
 using OpenSBS.Engine.Modules.Sensors;
 using OpenSBS.Engine.Utils;
@@ -18,7 +18,7 @@ public class WeaponModule(WeaponTemplate template) : SpaceshipModule
     public void ResetTimer() => Timer.Reset(Template.CycleTime);
     public void ResetTarget() => Target = null;
 
-    public override void OnCommand(ClientAction command)
+    public override void OnCommand(Command command)
     {
         switch (command.Type)
         {

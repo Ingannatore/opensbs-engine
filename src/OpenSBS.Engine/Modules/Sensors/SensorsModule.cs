@@ -1,4 +1,4 @@
-﻿using OpenSBS.Engine.Actions;
+﻿using OpenSBS.Engine.Commands;
 using OpenSBS.Engine.Entities;
 using OpenSBS.Engine.Traces;
 
@@ -13,7 +13,7 @@ public class SensorsModule(SensorsTemplate template) : SpaceshipModule
 
     public EntityTrace? GetTrace(string entityId) => Traces.Get(entityId);
 
-    public override void OnCommand(ClientAction command)
+    public override void OnCommand(Command command)
     {
         switch (command.Type)
         {

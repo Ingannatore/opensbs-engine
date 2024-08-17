@@ -1,4 +1,4 @@
-﻿using OpenSBS.Engine.Actions;
+﻿using OpenSBS.Engine.Commands;
 using OpenSBS.Engine.Entities;
 using OpenSBS.Engine.Utils;
 
@@ -13,7 +13,7 @@ public class ShieldModule(ShieldTemplate template) : SpaceshipModule
     public bool IsRaised { get; protected set; } = false;
     public ShieldSector Sector { get; } = new ShieldSector(template.Capacity, template.RechargeRate);
 
-    public override void OnCommand(ClientAction command)
+    public override void OnCommand(Command command)
     {
         switch (command.Type)
         {
