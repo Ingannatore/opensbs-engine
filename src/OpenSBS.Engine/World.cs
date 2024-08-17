@@ -1,31 +1,42 @@
 ﻿using System.Collections;
+using OpenSBS.Engine.Behaviours;
+using OpenSBS.Engine.Entities;
 
 namespace OpenSBS.Engine
 {
-    public class World : IEnumerable<Celestial>
+    public class World : IEnumerable<Entity>
     {
-        private readonly IDictionary<string, Celestial> _entities = new Dictionary<string, Celestial>();
+        private readonly Dictionary<string, Entity> _entities = [];
+        private readonly Dictionary<string, ITickable> _tickables = [];
 
-        public bool ExistsEntity(string id) => _entities.ContainsKey(id);
-        public Celestial GetEntity(string id) => _entities[id];
-        public void AddEntity(Celestial entity) => _entities[entity.Id] = entity;
-        //public void DamageEntity(string id, int amount) => _entities[id].ApplyDamage(amount);
+        public bool Exists(string id) => _entities.ContainsKey(id);
+        public Entity Get(string id) => _entities[id];
 
-        public void Update(TimeSpan deltaT)
+        public void Add(Entity entity)
         {
-            foreach (var entity in _entities.Values)
-            {
-                // if (entity.IsDestroyed)
-                // {
-                //     _entities.Remove(entity.Id);
-                //     continue;
-                // }
+            _entities[entity.Id] = entity;
 
-                entity.OnTick(this, entity, deltaT);
+            if (entity is ITickable tickableEntity)
+            {
+                _tickables[entity.Id] = tickableEntity;
             }
         }
 
-        public IEnumerator<Celestial> GetEnumerator() => _entities.Values.GetEnumerator();
+        public void Remove(string id)
+        {
+            _entities.Remove(id);
+            _tickables.Remove(id);
+        }
+
+        public void OnTick(TimeSpan deltaT)
+        {
+            foreach (var entity in _tickables.Values)
+            {
+                entity.OnTick(this, (Entity)entity, deltaT);
+            }
+        }
+
+        public IEnumerator<Entity> GetEnumerator() => _entities.Values.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

@@ -27,7 +27,7 @@ public class SensorsModule(SensorsTemplate template) : SpaceshipModule
     {
         foreach (var trace in Traces)
         {
-            if (!world.ExistsEntity(trace.Id))
+            if (!world.Exists(trace.Id))
             {
                 Traces.Remove(trace.Id);
             }
