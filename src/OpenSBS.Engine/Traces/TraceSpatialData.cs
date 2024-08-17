@@ -1,5 +1,5 @@
 ﻿using System.Numerics;
-using OpenSBS.Engine.Models;
+using OpenSBS.Engine.Entities;
 using OpenSBS.Engine.Utils;
 
 namespace OpenSBS.Engine.Traces;
@@ -20,10 +20,10 @@ public class TraceSpatialData
         return Distance > range;
     }
 
-    public void Update(Celestial owner, Celestial target)
+    public void Update(Spaceship owner, Spaceship target)
     {
-        var ownerBody = owner.Plugins.GetBody();
-        var targetBody = target.Plugins.GetBody();
+        var ownerBody = owner.Body;
+        var targetBody = target.Body;
 
         Position = targetBody.Position;
         Sector = Vectors.ToSector(targetBody.Position);

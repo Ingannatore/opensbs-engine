@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using OpenSBS.Engine.Models;
+using OpenSBS.Engine.Entities;
 
 namespace OpenSBS.Engine.Traces;
 
@@ -29,7 +29,7 @@ public class EntityTraceCollection : IEnumerable<EntityTrace>
         }
     }
 
-    public void Update(Celestial owner, Celestial target, int range)
+    public void Update(Spaceship owner, Spaceship target, int range)
     {
         if (!_traces.ContainsKey(target.Id))
         {

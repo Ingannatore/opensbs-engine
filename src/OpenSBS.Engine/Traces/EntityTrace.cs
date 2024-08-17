@@ -1,4 +1,4 @@
-﻿using OpenSBS.Engine.Models;
+﻿using OpenSBS.Engine.Entities;
 
 namespace OpenSBS.Engine.Traces;
 
@@ -11,7 +11,7 @@ public class EntityTrace(string id, string initialCallSign, string[,] signature)
     public string CallSign { get; private set; } = initialCallSign;
     public TraceSpatialData Spatial { get; } = new();
 
-    public static EntityTrace ForEntity(Celestial entity, string initialCallSign, string[,] signature) =>
+    public static EntityTrace ForEntity(Spaceship entity, string initialCallSign, string[,] signature) =>
         new(entity.Id, initialCallSign, signature);
 
     public bool IsOutOfRange(int range) => Spatial.IsOutOfRange(range);
@@ -21,7 +21,7 @@ public class EntityTrace(string id, string initialCallSign, string[,] signature)
         ScanLevel += amount;
     }
 
-    public void Update(Celestial owner, Celestial target)
+    public void Update(Spaceship owner, Spaceship target)
     {
         Spatial.Update(owner, target);
         if (ScanLevel < 1)

@@ -1,11 +1,11 @@
 using System.Numerics;
 using OpenSBS.Engine.Behaviours;
-using OpenSBS.Engine.Models;
+using OpenSBS.Engine.Entities;
 using OpenSBS.Engine.Utils;
 
-namespace OpenSBS.Engine.Plugins;
+namespace OpenSBS.Engine.Components;
 
-public class BodyPlugin(Vector3 position, Vector3 direction) : EntityPlugin, ITickable
+public class BodyComponent(Vector3 position, Vector3 direction) : ITickable
 {
     public Vector3 Position { get; private set; } = position;
     public Vector3 Direction { get; private set; } = direction;
@@ -13,7 +13,8 @@ public class BodyPlugin(Vector3 position, Vector3 direction) : EntityPlugin, ITi
     public double LinearSpeed { get; private set; }
     public double AngularSpeed { get; private set; }
 
-    public BodyPlugin() : this(Vector3.Zero, Vector3.UnitZ) { }
+    public BodyComponent() : this(Vector3.Zero, Vector3.UnitZ) { }
+    public BodyComponent(Vector3 position) : this(position, Vector3.UnitZ) { }
 
     public void OnTick(World world, Entity owner, TimeSpan deltaT)
     {

@@ -1,5 +1,5 @@
 ﻿using OpenSBS.Engine.Actions;
-using OpenSBS.Engine.Models;
+using OpenSBS.Engine.Entities;
 
 namespace OpenSBS.Engine.Modules.Engines;
 
@@ -27,7 +27,7 @@ public class EngineModule(EngineTemplate template) : SpaceshipModule<EngineTempl
 
     public override void OnTick(World world, Entity owner, TimeSpan deltaT)
     {
-        var ownerBody = (owner as Spaceship)?.Plugins.GetBody() ?? throw new Exception("Module owner is not a Spaceship");
+        var ownerBody = (owner as Spaceship)?.Body ?? throw new Exception("Module owner is not a Spaceship");
 
         ownerBody.Update(
             CalculateLinearSpeed(deltaT, ownerBody.LinearSpeed),

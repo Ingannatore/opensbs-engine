@@ -1,9 +1,9 @@
 using OpenSBS.Engine.Behaviours;
 using OpenSBS.Engine.Utils;
 
-namespace OpenSBS.Engine.Plugins;
+namespace OpenSBS.Engine.Components;
 
-public class StructurePlugin(int hitPoints) : EntityPlugin, IDamageable
+public class StructureComponent(int hitPoints) : IDamageable
 {
     public BoundedValue HitPoints { get; } = new(hitPoints, hitPoints);
     public bool IsDestroyed => HitPoints.IsEmpty;

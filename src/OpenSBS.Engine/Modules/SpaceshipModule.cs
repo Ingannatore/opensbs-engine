@@ -1,5 +1,5 @@
 using OpenSBS.Engine.Actions;
-using OpenSBS.Engine.Models;
+using OpenSBS.Engine.Entities;
 
 namespace OpenSBS.Engine.Modules;
 
