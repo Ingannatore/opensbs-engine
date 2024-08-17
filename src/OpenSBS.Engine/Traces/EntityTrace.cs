@@ -1,4 +1,6 @@
-﻿namespace OpenSBS.Engine.Models.Traces;
+﻿using OpenSBS.Engine.Models;
+
+namespace OpenSBS.Engine.Traces;
 
 public class EntityTrace(string id, string initialCallSign, string[,] signature)
 {

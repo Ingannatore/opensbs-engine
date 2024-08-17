@@ -1,6 +1,6 @@
 ﻿using OpenSBS.Engine.Utils;
 
-namespace OpenSBS.Engine.Models.Traces;
+namespace OpenSBS.Engine.Traces;
 
 public class SignatureGenerator(Random randomizer)
 {

@@ -1,5 +1,5 @@
-﻿using OpenSBS.Engine.Models;
-using OpenSBS.Engine.Models.Actions;
+﻿using OpenSBS.Engine.Actions;
+using OpenSBS.Engine.Models;
 using OpenSBS.Engine.Utils;
 
 namespace OpenSBS.Engine.Modules.Shields;

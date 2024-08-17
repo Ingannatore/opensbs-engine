@@ -1,4 +1,4 @@
-﻿namespace OpenSBS.Engine.Models.Actions;
+﻿namespace OpenSBS.Engine.Actions;
 
 public class ClientActionMetadata
 {

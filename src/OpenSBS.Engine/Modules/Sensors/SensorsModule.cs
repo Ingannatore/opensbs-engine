@@ -1,6 +1,6 @@
-﻿using OpenSBS.Engine.Models;
-using OpenSBS.Engine.Models.Actions;
-using OpenSBS.Engine.Models.Traces;
+﻿using OpenSBS.Engine.Actions;
+using OpenSBS.Engine.Models;
+using OpenSBS.Engine.Traces;
 
 namespace OpenSBS.Engine.Modules.Sensors;
 

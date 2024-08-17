@@ -1,6 +1,6 @@
 using System.Collections;
+using OpenSBS.Engine.Behaviours;
 using OpenSBS.Engine.Models;
-using OpenSBS.Engine.Models.Behaviours;
 
 namespace OpenSBS.Engine.Modules;
 

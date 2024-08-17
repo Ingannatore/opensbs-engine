@@ -1,6 +1,6 @@
-using OpenSBS.Engine.Models.Actions;
+using OpenSBS.Engine.Actions;
 
-namespace OpenSBS.Engine.Models.Behaviours;
+namespace OpenSBS.Engine.Behaviours;
 
 public interface ICommandable
 {

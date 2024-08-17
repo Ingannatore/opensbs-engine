@@ -1,4 +1,4 @@
-namespace OpenSBS.Engine.Models.Plugins;
+namespace OpenSBS.Engine.Plugins;
 
 public abstract class EntityPlugin : IEquatable<EntityPlugin>
 {

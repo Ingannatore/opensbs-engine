@@ -1,7 +1,7 @@
-using OpenSBS.Engine.Models.Behaviours;
+using OpenSBS.Engine.Behaviours;
 using OpenSBS.Engine.Utils;
 
-namespace OpenSBS.Engine.Models.Plugins;
+namespace OpenSBS.Engine.Plugins;
 
 public class StructurePlugin(int hitPoints) : EntityPlugin, IDamageable
 {

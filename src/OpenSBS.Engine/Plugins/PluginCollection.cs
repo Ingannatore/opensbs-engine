@@ -1,8 +1,8 @@
 using System.Collections;
-using OpenSBS.Engine.Models.Behaviours;
-using OpenSBS.Engine.Modules;
+using OpenSBS.Engine.Behaviours;
+using OpenSBS.Engine.Models;
 
-namespace OpenSBS.Engine.Models.Plugins;
+namespace OpenSBS.Engine.Plugins;
 
 public class PluginCollection : IEnumerable<EntityPlugin>, ITickable
 {
@@ -13,7 +13,6 @@ public class PluginCollection : IEnumerable<EntityPlugin>, ITickable
 
     public BodyPlugin GetBody() => FirstOrDefault<BodyPlugin>() ?? throw new Exception("Body plugin not found");
     public StructurePlugin GetStructure() => FirstOrDefault<StructurePlugin>() ?? throw new Exception("Structure plugin not found");
-    public SpaceshipModuleCollection GetModules() => FirstOrDefault<SpaceshipModuleCollection>() ?? throw new Exception("Modular plugin not found");
 
     public void OnTick(World world, Entity owner, TimeSpan deltaT)
     {

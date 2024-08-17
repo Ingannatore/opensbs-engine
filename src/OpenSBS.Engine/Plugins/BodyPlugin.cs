@@ -1,8 +1,9 @@
 using System.Numerics;
-using OpenSBS.Engine.Models.Behaviours;
+using OpenSBS.Engine.Behaviours;
+using OpenSBS.Engine.Models;
 using OpenSBS.Engine.Utils;
 
-namespace OpenSBS.Engine.Models.Plugins;
+namespace OpenSBS.Engine.Plugins;
 
 public class BodyPlugin(Vector3 position, Vector3 direction) : EntityPlugin, ITickable
 {

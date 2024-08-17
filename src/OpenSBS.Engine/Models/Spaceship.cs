@@ -1,8 +1,9 @@
 
-using OpenSBS.Engine.Models.Actions;
-using OpenSBS.Engine.Models.Behaviours;
+using OpenSBS.Engine.Actions;
+using OpenSBS.Engine.Behaviours;
 using OpenSBS.Engine.Models.Plugins;
 using OpenSBS.Engine.Modules;
+using OpenSBS.Engine.Plugins;
 
 namespace OpenSBS.Engine.Models;
 

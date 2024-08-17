@@ -1,4 +1,6 @@
-namespace OpenSBS.Engine.Models.Behaviours;
+using OpenSBS.Engine.Models;
+
+namespace OpenSBS.Engine.Behaviours;
 
 public interface ITickable
 {

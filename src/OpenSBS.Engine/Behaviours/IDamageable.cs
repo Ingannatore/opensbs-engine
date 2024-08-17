@@ -1,4 +1,4 @@
-namespace OpenSBS.Engine.Models.Behaviours;
+namespace OpenSBS.Engine.Behaviours;
 
 interface IDamageable
 {

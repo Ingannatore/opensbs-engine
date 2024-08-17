@@ -1,8 +1,8 @@
 ﻿using System.Numerics;
-using OpenSBS.Engine.Models.Plugins;
+using OpenSBS.Engine.Models;
 using OpenSBS.Engine.Utils;
 
-namespace OpenSBS.Engine.Models.Traces;
+namespace OpenSBS.Engine.Traces;
 
 public class TraceSpatialData
 {

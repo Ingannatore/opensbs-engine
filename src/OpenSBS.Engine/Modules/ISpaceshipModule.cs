@@ -1,4 +1,4 @@
-using OpenSBS.Engine.Models.Behaviours;
+using OpenSBS.Engine.Behaviours;
 
 namespace OpenSBS.Engine.Modules;
 

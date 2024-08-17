@@ -1,5 +1,5 @@
-﻿using OpenSBS.Engine.Models.Behaviours;
-using OpenSBS.Engine.Models.Plugins;
+﻿using OpenSBS.Engine.Behaviours;
+using OpenSBS.Engine.Plugins;
 
 namespace OpenSBS.Engine.Models;
 
