@@ -13,7 +13,7 @@ public class EngineModule(EngineTemplate template) : SpaceshipModule
     public int Rudder { get; protected set; }
     public double TargetSpeed { get; protected set; }
 
-    public override void OnCommand(Command command)
+    public override void OnCommand(ModuleCommand command)
     {
         switch (command.Type)
         {

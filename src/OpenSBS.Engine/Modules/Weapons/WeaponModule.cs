@@ -18,7 +18,7 @@ public class WeaponModule(WeaponTemplate template) : SpaceshipModule
     public void ResetTimer() => Timer.Reset(Template.CycleTime);
     public void ResetTarget() => Target = null;
 
-    public override void OnCommand(Command command)
+    public override void OnCommand(ModuleCommand command)
     {
         switch (command.Type)
         {

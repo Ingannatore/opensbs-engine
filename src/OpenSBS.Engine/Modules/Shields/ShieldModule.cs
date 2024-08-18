@@ -13,7 +13,7 @@ public class ShieldModule(ShieldTemplate template) : SpaceshipModule
     public bool IsRaised { get; protected set; } = false;
     public ShieldSector Sector { get; } = new ShieldSector(template.Capacity, template.RechargeRate);
 
-    public override void OnCommand(Command command)
+    public override void OnCommand(ModuleCommand command)
     {
         switch (command.Type)
         {

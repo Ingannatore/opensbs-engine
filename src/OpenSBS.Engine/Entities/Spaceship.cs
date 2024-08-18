@@ -1,5 +1,4 @@
 using System.Numerics;
-using OpenSBS.Engine.Behaviours;
 using OpenSBS.Engine.Commands;
 using OpenSBS.Engine.Components;
 using OpenSBS.Engine.Modules;
@@ -12,7 +11,7 @@ public class Spaceship(
     SpaceshipTemplate template,
     Vector3 position,
     Vector3 direction
-) : Entity(id, name), ICommandable
+) : Entity(id, name)
 {
     public readonly SpaceshipTemplate Template = template;
     public readonly BodyComponent Body = new(position, direction);
@@ -20,13 +19,14 @@ public class Spaceship(
     public readonly CargoComponent Cargo = new(template.Size);
     public readonly SpaceshipModuleCollection Modules = new(); // TODO: add modules as configured in the template
 
-    public void OnCommand(Command command)
+    public void OnCommand(EntityCommand command)
     {
-        if (!command.HasMetadata) throw new Exception("Missing command metadata on a spaceship command");
-        if (command.Meta?.EntityId != Id) throw new Exception("Mismatched entity ID on a spaceship command");
+        if (command.EntityId != Id) throw new Exception("Mismatched entity ID on a spaceship command");
 
-        Guid moduleId = command.Meta?.ModuleId ?? throw new Exception("Missing module ID on a spaceship command");
-        Modules.Get(moduleId).OnCommand(command);
+        if (command is ModuleCommand moduleCommand)
+        {
+            Modules.OnCommand(moduleCommand);
+        }
     }
 
     public void OnTick(World world, TimeSpan deltaT)

@@ -1,5 +1,5 @@
 using System.Collections;
-using OpenSBS.Engine.Behaviours;
+using OpenSBS.Engine.Commands;
 using OpenSBS.Engine.Entities;
 
 namespace OpenSBS.Engine.Modules;
@@ -18,6 +18,11 @@ public class SpaceshipModuleCollection : IEnumerable<SpaceshipModule>
 
     public IEnumerator<SpaceshipModule> GetEnumerator() => _modules.Values.GetEnumerator();
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+    public void OnCommand(ModuleCommand command)
+    {
+        _modules[command.ModuleId].OnCommand(command);
+    }
 
     public void OnTick(World world, Spaceship owner, TimeSpan deltaT)
     {

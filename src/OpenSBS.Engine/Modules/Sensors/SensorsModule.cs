@@ -13,7 +13,7 @@ public class SensorsModule(SensorsTemplate template) : SpaceshipModule
 
     public EntityTrace? GetTrace(string entityId) => Traces.Get(entityId);
 
-    public override void OnCommand(Command command)
+    public override void OnCommand(ModuleCommand command)
     {
         switch (command.Type)
         {
