@@ -8,5 +8,5 @@ public abstract class SpaceshipModule
     public readonly Guid Id = Guid.NewGuid();
 
     public abstract void OnCommand(ModuleCommand command);
-    public abstract void OnTick(World world, Entity owner, TimeSpan deltaT);
+    public abstract void OnTick(World world, Spaceship owner, TimeSpan deltaT);
 }

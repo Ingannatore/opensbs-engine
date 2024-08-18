@@ -1,13 +1,10 @@
 using OpenSBS.Engine.Entities;
+using OpenSBS.Engine.Utils;
 
 namespace OpenSBS.Engine.Components;
 
-public class SignatureComponent(int size)
+public class SignatureComponent(int size) : Spectra(size)
 {
-    public int Erm { get; protected set; } = size;
-    public int Mag { get; protected set; } = size;
-    public int Grav { get; protected set; } = size;
-
     public void OnTick(Spaceship owner)
     {
         UpdateErmSignature(owner);

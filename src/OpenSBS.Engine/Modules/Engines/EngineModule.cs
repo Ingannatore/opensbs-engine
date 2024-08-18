@@ -26,12 +26,10 @@ public class EngineModule(EngineTemplate template) : SpaceshipModule
         }
     }
 
-    public override void OnTick(World world, Entity owner, TimeSpan deltaT)
+    public override void OnTick(World world, Spaceship owner, TimeSpan deltaT)
     {
-        var ownerBody = (owner as Spaceship)?.Body ?? throw new Exception("Module owner is not a Spaceship");
-
-        ownerBody.Update(
-            CalculateLinearSpeed(deltaT, ownerBody.LinearSpeed),
+        owner.Body.Update(
+            CalculateLinearSpeed(deltaT, owner.Body.LinearSpeed),
             CalculateAngularSpeed(deltaT)
         );
     }

@@ -6,6 +6,9 @@ public static class Vectors
 {
     private const int SectorSize = 50000;
 
+    public static int Distance(Vector3 positionA, Vector3 positionB) =>
+        (int)Math.Round(Vector3.Distance(positionA, positionB));
+
     public static Vector3 Rotate(Vector3 value, double yaw, double pitch, double roll)
     {
         var rotationQuaternion = Quaternion.CreateFromYawPitchRoll(

@@ -1,6 +1,5 @@
 ﻿using OpenSBS.Engine.Commands;
 using OpenSBS.Engine.Entities;
-using OpenSBS.Engine.Modules.Sensors;
 using OpenSBS.Engine.Utils;
 
 namespace OpenSBS.Engine.Modules.Weapons;
@@ -36,8 +35,8 @@ public class WeaponModule(WeaponTemplate template) : SpaceshipModule
         }
     }
 
-    public override void OnTick(World world, Entity owner, TimeSpan deltaT)
+    public override void OnTick(World world, Spaceship owner, TimeSpan deltaT)
     {
-        var targetTrace = (owner as Spaceship)?.Modules.FirstOrDefault<SensorsModule>()?.GetTrace(Target);
+        // TODO: implement
     }
 }

@@ -28,7 +28,7 @@ public class ShieldModule(ShieldTemplate template) : SpaceshipModule
         }
     }
 
-    public override void OnTick(World world, Entity owner, TimeSpan deltaT)
+    public override void OnTick(World world, Spaceship owner, TimeSpan deltaT)
     {
         if (!IsRaised)
         {
