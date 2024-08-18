@@ -17,6 +17,7 @@ public class Spaceship(
     public readonly BodyComponent Body = new(position, direction);
     public readonly StructureComponent Structure = new(template.HitPoints);
     public readonly CargoComponent Cargo = new(template.Size);
+    public readonly SignatureComponent Signature = new(template.Size);
     public readonly SpaceshipModuleCollection Modules = new(); // TODO: add modules as configured in the template
 
     public void OnDamage(int amount) => Structure.OnDamage(amount);
@@ -35,5 +36,6 @@ public class Spaceship(
     {
         Body.OnTick(world, this, deltaT);
         Modules.OnTick(world, this, deltaT);
+        Signature.OnTick(this);
     }
 }
