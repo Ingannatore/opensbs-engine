@@ -12,7 +12,7 @@ public class Spaceship(
     SpaceshipTemplate template,
     Vector3 position,
     Vector3 direction
-) : Entity(id, name), ICommandable, ITickable
+) : Entity(id, name), ICommandable
 {
     public readonly SpaceshipTemplate Template = template;
     public readonly BodyComponent Body = new(position, direction);
@@ -29,7 +29,7 @@ public class Spaceship(
         Modules.Get(moduleId).OnCommand(command);
     }
 
-    public void OnTick(World world, Entity owner, TimeSpan deltaT)
+    public void OnTick(World world, TimeSpan deltaT)
     {
         Body.OnTick(world, this, deltaT);
         Modules.OnTick(world, this, deltaT);

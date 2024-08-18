@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using OpenSBS.Engine.Behaviours;
 using OpenSBS.Engine.Entities;
 
 namespace OpenSBS.Engine
@@ -7,7 +6,7 @@ namespace OpenSBS.Engine
     public class World : IEnumerable<Entity>
     {
         private readonly Dictionary<string, Entity> _entities = [];
-        private readonly Dictionary<string, ITickable> _tickables = [];
+        private readonly Dictionary<string, Spaceship> _spaceships = [];
 
         public bool Exists(string id) => _entities.ContainsKey(id);
         public Entity Get(string id) => _entities[id];
@@ -16,23 +15,23 @@ namespace OpenSBS.Engine
         {
             _entities[entity.Id] = entity;
 
-            if (entity is ITickable tickableEntity)
+            if (entity is Spaceship spaceship)
             {
-                _tickables[entity.Id] = tickableEntity;
+                _spaceships[entity.Id] = spaceship;
             }
         }
 
         public void Remove(string id)
         {
             _entities.Remove(id);
-            _tickables.Remove(id);
+            _spaceships.Remove(id);
         }
 
         public void OnTick(TimeSpan deltaT)
         {
-            foreach (var entity in _tickables.Values)
+            foreach (var spaceship in _spaceships.Values)
             {
-                entity.OnTick(this, (Entity)entity, deltaT);
+                spaceship.OnTick(this, deltaT);
             }
         }
 

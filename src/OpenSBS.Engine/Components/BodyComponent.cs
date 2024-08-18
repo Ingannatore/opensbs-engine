@@ -1,11 +1,10 @@
 using System.Numerics;
-using OpenSBS.Engine.Behaviours;
 using OpenSBS.Engine.Entities;
 using OpenSBS.Engine.Utils;
 
 namespace OpenSBS.Engine.Components;
 
-public class BodyComponent(Vector3 position, Vector3 direction) : ITickable
+public class BodyComponent(Vector3 position, Vector3 direction)
 {
     public Vector3 Position { get; private set; } = position;
     public Vector3 Direction { get; private set; } = direction;

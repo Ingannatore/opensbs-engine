@@ -4,7 +4,7 @@ using OpenSBS.Engine.Entities;
 
 namespace OpenSBS.Engine.Modules;
 
-public class SpaceshipModuleCollection : IEnumerable<SpaceshipModule>, ITickable
+public class SpaceshipModuleCollection : IEnumerable<SpaceshipModule>
 {
     private readonly IDictionary<Guid, SpaceshipModule> _modules;
 
@@ -19,7 +19,7 @@ public class SpaceshipModuleCollection : IEnumerable<SpaceshipModule>, ITickable
     public IEnumerator<SpaceshipModule> GetEnumerator() => _modules.Values.GetEnumerator();
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-    public void OnTick(World world, Entity owner, TimeSpan deltaT)
+    public void OnTick(World world, Spaceship owner, TimeSpan deltaT)
     {
         foreach (var module in _modules.Values)
         {
