@@ -19,6 +19,8 @@ public class Spaceship(
     public readonly CargoComponent Cargo = new(template.Size);
     public readonly SpaceshipModuleCollection Modules = new(); // TODO: add modules as configured in the template
 
+    public void OnDamage(int amount) => Structure.OnDamage(amount);
+
     public void OnCommand(EntityCommand command)
     {
         if (command.EntityId != Id) throw new Exception("Mismatched entity ID on a spaceship command");
