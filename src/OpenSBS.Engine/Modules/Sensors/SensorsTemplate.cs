@@ -12,8 +12,10 @@ public abstract record SensorsTemplate(
 {
     public readonly int MaxLockedTargets = CalculateMaxLockedTargets(Size);
 
-    private static int CalculateMaxLockedTargets(int size)
-    {
-        return size > 2 ? 4 + 2 * ((size - 3) / 2) : size;
-    }
+    /*
+     * Ship size          | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |  9
+     * Max locked targets | 1 | 2 | 4 | 4 | 6 | 6 | 8 | 8 | 10
+     */
+    private static int CalculateMaxLockedTargets(int size) =>
+        size > 2 ? 4 + 2 * ((size - 3) / 2) : size;
 }

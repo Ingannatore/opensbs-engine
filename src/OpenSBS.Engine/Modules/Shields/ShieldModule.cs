@@ -7,7 +7,7 @@ namespace OpenSBS.Engine.Modules.Shields;
 public class ShieldModule(ShieldTemplate template) : SpaceshipModule
 {
     private const string ToggleAction = "toggle";
-    private readonly CountdownTimer _countdownTimer = new();
+    private readonly CountdownTimer _countdownTimer = new(new TimeSpan(0, 0, 1));
 
     public readonly ShieldTemplate Template = template;
     public bool IsRaised { get; protected set; } = false;
@@ -21,7 +21,7 @@ public class ShieldModule(ShieldTemplate template) : SpaceshipModule
                 IsRaised = !IsRaised;
                 if (IsRaised)
                 {
-                    _countdownTimer.Reset(1);
+                    _countdownTimer.Reset(new TimeSpan(0, 0, 1));
                 }
 
                 break;
@@ -30,18 +30,12 @@ public class ShieldModule(ShieldTemplate template) : SpaceshipModule
 
     public override void OnTick(World world, Spaceship owner, TimeSpan deltaT)
     {
-        if (!IsRaised)
-        {
-            return;
-        }
-
-        _countdownTimer.Advance(deltaT.TotalSeconds);
-        if (!_countdownTimer.IsCompleted)
+        if (!IsRaised || !_countdownTimer.Advance(deltaT))
         {
             return;
         }
 
         Sector.Update();
-        _countdownTimer.Reset(1);
+        _countdownTimer.Reset(new TimeSpan(0, 0, 1));
     }
 }

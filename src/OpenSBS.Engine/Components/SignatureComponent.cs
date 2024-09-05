@@ -9,6 +9,7 @@ public class SignatureComponent(int size) : Spectra(size)
     {
         UpdateErmSignature(owner);
         UpdateMagSignature(owner);
+        UpdateGravSignature(owner);
     }
 
     private void UpdateErmSignature(Spaceship owner)
